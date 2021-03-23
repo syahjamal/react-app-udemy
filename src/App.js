@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+
+import {isArrayEmpty} from './Utils'; 
+import BlogCard from "./BlogCard";
+import "./App.css";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const loremLocal =
+    "Lorem Ipsum Dolor Lorem Ipsum Dolor Lorem Ipsum Dolor Lorem Ipsum Dolor";
+  const blogArr = [
+    {
+      id: 1,
+      title: "Blog Title 1",
+      description: loremLocal,
+    },
+    {
+      id: 2,
+      title: "Blog Title 2",
+      description: loremLocal,
+    },
+    {
+      id: 3,
+      title: "Blog Title 3",
+      description: loremLocal,
+    },
+  ];
+
+  const blogCards =  isArrayEmpty(blogArr) ? [] : blogArr.map((item, pos) => {
+    return (
+      <BlogCard className={'Blog'} key={pos} title={item.title} description={item.description} id={item.id}/>
+    );
+  });
+
+  return <div className="App">{blogCards}</div>;
 }
 
 export default App;
